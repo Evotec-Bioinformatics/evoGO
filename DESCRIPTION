@@ -1,0 +1,32 @@
+Package: evoGO
+Type: Package
+Title: GO enrichment analysis using GO term weighting algorithm
+Version: 0.1.0
+Authors@R:
+  c(person(given = "Ievgen",
+           family = "Strielkov",
+           role = c("aut", "cre"),
+           email = "github_bioinfo@evotec.com"),
+    person(given = "Vladimir",
+           family = "Galatenko",
+           role = "aut"),
+    person(given = "Alexey",
+           family = "Uvarovskii",
+           role = "ctb"))
+Maintainer: Evotec International GmbH <github_bioinfo@evotec.com>
+Description: The package provides functionality for GO enrichment analysis.
+Copyright: file inst/COPYRIGHTS
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Imports:
+  assertthat,
+  biomaRt,
+  curl,
+  dplyr,
+  ontologyIndex,
+  parallel
+Suggests: testthat
+Depends:
+    R (>= 2.10)
