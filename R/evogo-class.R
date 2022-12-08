@@ -47,7 +47,7 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
   # Lengths of gene vectors
   g_stat$wt_len <- lengths(sapply(g, "[[", "weights", simplify = FALSE))
 
-  # Remove empty leaves (and update vector with leave names on each iteration)
+  # Remove empty leaves
   nodes_to_remove <- intersect(names(g_stat$wt_len[g_stat$wt_len == 0]), g_stat$leaves)
   g_stat$nodes <- setdiff(g_stat$nodes, nodes_to_remove)
   g_stat$wt_len <- g_stat$wt_len[g_stat$nodes]

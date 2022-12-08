@@ -123,5 +123,6 @@ GPL-2
 ## References
 
 Ashburner et al. Gene ontology: tool for the unification of biology. Nat Genet. May 2000;25(1):25-9. [[abstract](https://www.ncbi.nlm.nih.gov/pubmed/10802651) | [full text](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3037419/)]
+
 The Gene Ontology resource: enriching a GOld mine. Nucleic Acids Res. Jan 2021;49(D1):D325-D334. [[abstract](https://pubmed.ncbi.nlm.nih.gov/33290552/) | [full text](https://academic.oup.com/nar/article-pdf/49/D1/D325/35364517/gkaa1113.pdf)]
 
