@@ -22,12 +22,10 @@ test_that("correct graph object is created", {
   )
   evogo <- evoGO(graph, go_genes, minGenes = 1, nCores = 1)
 
-  expect_length(evogo$g[["L"]]$ancestors, 0)
-  expect_equal(evogo$g[["LL"]]$ancestors, "L")
-  expect_equal(evogo$g[["LL"]]$ancestors, "L")
-  expect_equal(evogo$g[["RR"]]$ancestors, "R")
-  expect_setequal(evogo$g[["RRR"]]$ancestors, c("RR", "R"))
-
+  expect_length(evogo$g[["L"]]$ancestors, 1)
+  expect_equal(evogo$g[["LL"]]$ancestors, c("L", "root"))
+  expect_equal(evogo$g[["RR"]]$ancestors, c("R", "root"))
+  expect_setequal(evogo$g[["RRR"]]$ancestors, c("RR", "R", "root"))
   expect_mapequal(evogo$g[["RRR"]]$weights, c(RRR1 = 1, RRR2 = 1))
   expect_mapequal(evogo$g[["RR"]]$weights, c(RRR1 = 1, RRR2 = 1, RR1 = 1, RR2 = 1))
 })

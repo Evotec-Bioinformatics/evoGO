@@ -66,12 +66,6 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
     list(parents = unique(unlist(parents)), distance = distance)
   }, g_stat$nodes, MoreArgs = list(g), SIMPLIFY = FALSE, mc.cores = nCores)
 
-  # Remove the rest of the empty nodes befor next loop to save time
-  nodes_to_remove <- names(g_stat$wt_len[g_stat$wt_len == 0])
-  g_stat$nodes <- setdiff(g_stat$nodes, nodes_to_remove)
-  g_stat$wt_len <- g_stat$wt_len[g_stat$nodes]
-  rm(list = nodes_to_remove, envir = g)
-
   # Set all ancestors
   for (n in g_stat$nodes) {
     g[[n]]$ancestors <- ancestors[[n]]$parents
