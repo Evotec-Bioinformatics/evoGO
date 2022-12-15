@@ -9,4 +9,18 @@
 Please refer to the README and function documentation to learn more
 about the usage.
 }
+\author{
+\strong{Maintainer}: Ievgen Strielkov \email{github_bioinfo@evotec.com}
+
+Authors:
+\itemize{
+  \item Vladimir Galatenko
+}
+
+Other contributors:
+\itemize{
+  \item Alexey Uvarovskii [contributor]
+}
+
+}
 \keyword{internal}
