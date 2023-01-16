@@ -282,9 +282,10 @@ loadGOAnnotation <- function(species, database = "ensembl", goRelease = NULL,
       grepl("^evogo__", all_files) &
         grepl("\\.rds$", all_files) &
         grepl(goVersion, all_files) &
+        grepl(species, all_files) &
         grepl(annoVersion, all_files)
     ]
-    assertthat::assert_that(length(selected_files) > 0, msg = "No files found")
+    assertthat::assert_that(length(selected_files) > 0, msg = "No annotation files found")
 
     # Also assume Ensembl genome build or patch number will not reach 100 in this century
     file_name <- sort(selected_files, decreasing = T)[1]
