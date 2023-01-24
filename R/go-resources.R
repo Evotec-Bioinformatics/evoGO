@@ -129,16 +129,16 @@ getGOAnnotation <- function(species, database = "ensembl", nCores = 1, save = TR
   )
 
   # Get/create save directory
-  if (save) {
-    if (is.null(path)) {
-      package_dir <- path.package("evoGO")
-      path <- file.path(package_dir, "extdata")
-      if (!dir.exists(path)) {
-        dir.create(path = path, recursive = TRUE, showWarnings = FALSE)
-      }
-    } else {
-      assertthat::assert_that(dir.exists(path), msg = "Provided path does not exist")
+  if (is.null(path)) {
+    package_dir <- path.package("evoGO")
+    path <- file.path(package_dir, "extdata")
+    if (!dir.exists(path)) {
+      dir.create(path = path, recursive = TRUE, showWarnings = FALSE)
     }
+  } else {
+    assertthat::assert_that(dir.exists(path), msg = "Provided path does not exist")
+  }
+  if (save) {
     assertthat::assert_that(file.access(path, mode = 2) == 0,
       msg = paste0("No permission to write to ", path, ". Please specify other path.")
     )
