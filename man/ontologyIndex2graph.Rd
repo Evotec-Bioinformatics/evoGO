@@ -2,12 +2,12 @@
 % Please edit documentation in R/go-resources.R
 \name{ontologyIndex2graph}
 \alias{ontologyIndex2graph}
-\title{Create an input data.frame for evoGO constructor function.}
+\title{Create an input data.frame for evoGO constructor function}
 \usage{
 ontologyIndex2graph(go, rootName = "cellular_component")
 }
 \arguments{
-\item{go}{an ontologyIndex object returned by getOBO function (also see ontologyIndex package)}
+\item{go}{an ontologyIndex object returned by getOBO function (also see ontologyIndex package).}
 
 \item{rootName}{the name of the root elements from which to build
 the hierarchy.}
