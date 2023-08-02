@@ -26,9 +26,11 @@ p values;
 - Sums of DEG weights instead of DEG counts are used to re-calculate p values with 
 Fisher’s exact test.
 
-In addition, the *evoGO* code is specifically optimized to allow performing batch 
-calculations comprising of thousands of analyses (e.g., in case of drug screening) within a 
-reasonable time frame.
+The *evoGO* code is specifically optimized to allow performing batch 
+calculations involving of thousands of analyses (e.g., in drug screening studies) within a 
+reasonable time frame. Acknowledging the importance of result reproducibility, the *evoGO* provides
+functionality for extracting and using specific versions of Gene Ontology and Ensembl gene 
+annotation. Please refer to the documentation for details.
 
 
 ## Dependencies
@@ -50,8 +52,8 @@ devtools::install_github("Evotec-Bioinformatics/evoGO")
 Before starting your work with *evoGO* package it is recommended to acquire an up-to-date 
 GO annotation for species of interest. *evoGO* package has built-in means for downloading 
 latest version of Gene Ontology from [GO Consortium website](http://geneontology.org/) and 
-GO term annotation from [Ensembl database](https://www.ensembl.org/). To download the 
-annotation use:
+GO term annotation from [Ensembl database](https://www.ensembl.org/), which together are used
+to construct the GO annotation. To download the annotation use:
 
 ```r
 goAnnotation <- getGOAnnotation("hsapiens")
@@ -65,7 +67,11 @@ and not updated regularly.
 
 By default, the annotation files are stored in the `extdata` directory located inside 
 *evoGO* installation directory, which can be found using `path.package("evoGO")` after 
-the package was loaded. 
+the package was loaded. A list of the stored annotations can be viewed:
+
+```r
+listGOAnnotations()
+```
 
 You can quickly load latest previously stored annotation:
 
@@ -76,7 +82,7 @@ goAnnotation <- loadGOAnnotation("hsapiens")
 In the following example of GO enrichment analysis, we use one of the sample datasets 
 included with the package. The data was obtained by performing differential expression 
 analysis for heart and brain human tissue samples available from the 
-[GTEx V8 database](https://gtexportal.org/)(see the package documentation for details).
+[GTEx V8 database](https://gtexportal.org/) (see the package documentation for details).
 
 ```r
 # Get IDs of differentially expressed genes

@@ -1,17 +1,17 @@
 
-##' Create an input object for the gene set analysis.
+##' Create an input evoGO object for the gene set analysis
 ##'
 ##' @param graphTable a data.frame defining relationship between the GO terms.
 ##'   The first column must be called "child" and the second is "parent".
-##' @param geneSets a list with character vectors of gene groups per a GO term,
+##' @param geneSets a named list with character vectors of gene groups per GO term,
 ##'   e.g. list(`GO:01` = c("ENS01", "ENS02"), `GO:02` = c("ENS03")), where
 ##'   the names are the GO term identifiers.
 ##'   The list items may contain the genes belonging to all children terms or
 ##'   include only the genes with exclusion of the children terms.
 ##' @param annotation a data.frame with first column "id" with the term identifiers
-##' and columns with the annotation information
-##' @param minGenes minimal size of a term to keep in the object
-##' @param nCores number of cores to use
+##' and columns with the annotation information.
+##' @param minGenes minimal size of a term to keep in the object.
+##' @param nCores number of cores to use.
 ##' @export
 evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores = 1) {
   if (!is.null(annotation)) {
@@ -40,7 +40,8 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
   }
 
   # Set attributed genes (not weights yet)
-  for (go_id in names(geneSets)) {
+  avail_genesets <- intersect(names(geneSets), g_stat$nodes)
+  for (go_id in avail_genesets) {
     g[[go_id]]$weights <- as.character(na.omit(geneSets[[go_id]]))
   }
 
@@ -65,6 +66,9 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
     }
     list(parents = unique(unlist(parents)), distance = distance)
   }, g_stat$nodes, MoreArgs = list(g), SIMPLIFY = FALSE, mc.cores = nCores)
+
+  # Identify  empty nodes
+  empty_nodes <- names(g_stat$wt_len[g_stat$wt_len == 0])
 
   # Set all ancestors
   for (n in g_stat$nodes) {
@@ -93,6 +97,12 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
   }
   g_stat$wt_len <- lengths(sapply(g, "[[", "weights", simplify = FALSE))
 
+  # Remove empty nodes
+  g_stat$nodes <- setdiff(g_stat$nodes, empty_nodes)
+  g_stat$wt_len <- g_stat$wt_len[g_stat$nodes]
+  g_stat$distances <- g_stat$distances[g_stat$nodes]
+  rm(list = empty_nodes, envir = g)
+
   # Remove the rest of terms where wt_len < minGenes
   nodes_to_remove <- names(g_stat$wt_len[g_stat$wt_len < minGenes])
   g_stat$nodes <- setdiff(g_stat$nodes, nodes_to_remove)
@@ -112,7 +122,7 @@ evoGO <- function(graphTable, geneSets, annotation = NULL, minGenes = 3, nCores 
   res_list <- list(g = g, g_stat = g_stat, annotation = annotation)
   attr(res_list, "GO_version") <- attr(graphTable, "GO_version")
   attr(res_list, "GO_domain") <- attr(graphTable, "GO_domain")
-  attr(res_list, "Annotation_version") <- attr(geneSets, "Annotation_version")
+  attr(res_list, "Annotation_version") <- attr(geneSets, "Annotation")
   class(res_list) <- "evoGO"
   res_list
 }

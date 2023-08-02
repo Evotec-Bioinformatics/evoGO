@@ -2,12 +2,12 @@
 % Please edit documentation in R/go-resources.R
 \name{exampleGOAnnotation}
 \alias{exampleGOAnnotation}
-\title{Download example annotation for Homo sapiens}
+\title{Download example GO annotation for Homo sapiens}
 \usage{
 exampleGOAnnotation(path = NULL)
 }
 \arguments{
-\item{path}{directory where example evoGO annotation will be stored. If NULL, the default
+\item{path}{directory where example GO annotation will be stored. If NULL, the default
 package directory is used ('extdata').}
 }
 \value{

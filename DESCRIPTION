@@ -1,7 +1,7 @@
 Package: evoGO
 Type: Package
 Title: GO enrichment analysis using GO term weighting algorithm
-Version: 0.1.0
+Version: 0.2.0
 Authors@R:
   c(person(given = "Ievgen",
            family = "Strielkov",
@@ -10,6 +10,9 @@ Authors@R:
     person(given = "Vladimir",
            family = "Galatenko",
            role = "aut"),
+    person(given = "Greta",
+           family = "Buinovskaja",
+           role = "ctb"),
     person(given = "Alexey",
            family = "Uvarovskii",
            role = "ctb"))
@@ -19,7 +22,7 @@ Copyright: file inst/COPYRIGHTS
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports:
   assertthat,
   biomaRt,

@@ -4,13 +4,20 @@
 \alias{getGeneSets}
 \title{Get gene-GO mapping from biomaRt}
 \usage{
-getGeneSets(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+getGeneSets(
+  biomart = "ensembl",
+  dataset = "hsapiens_gene_ensembl",
+  ensemblRelease = NULL
+)
 }
 \arguments{
 \item{biomart}{the name of the biomart database (default "ensembl").}
 
 \item{dataset}{the name of the dataset (default "hsapiens_gene_ensembl"),
 use `biomaRt::listDatasets` to see the available ones.}
+
+\item{ensemblRelease}{gene annotation version (e.g., 100 for Ensembl). If not specified,
+latest available version is loaded.}
 }
 \value{
 an object to use as a geneSets argument for evoGO constructor

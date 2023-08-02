@@ -2,13 +2,17 @@
 % Please edit documentation in R/go-resources.R
 \name{getOBO}
 \alias{getOBO}
-\title{Retrieve the ontologyIndex object from the obolibrary.}
+\title{Retrieve the ontologyIndex object from the obolibrary}
 \usage{
-getOBO()
+getOBO(goRelease = NULL)
+}
+\arguments{
+\item{goRelease}{GO release date in yyyy-mm-dd format (e.g., "2022-01-31").
+If not specified, latest available version is loaded.}
 }
 \value{
 ontologyIndex object
 }
 \description{
-Retrieve the ontologyIndex object from the obolibrary.
+Retrieve the ontologyIndex object from the obolibrary
 }

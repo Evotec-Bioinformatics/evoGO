@@ -19,6 +19,7 @@ Authors:
 
 Other contributors:
 \itemize{
+  \item Greta Buinovskaja [contributor]
   \item Alexey Uvarovskii [contributor]
 }
 
